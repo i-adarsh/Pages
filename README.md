@@ -19,7 +19,7 @@ Under the package java.time Java 8 offers a new date-time API
 For Base64 encoding, Java8 has built-in encode and decode functions. -> java.util.Base64.
 
 ###### 5. Method and Constructor reference
-:: operator
+```:: operator```
 
 ###### 6. default and static methods came inside interface
 
@@ -450,6 +450,7 @@ public class PredicateDemo implements Predicate<Integer> {
     }
 }
 ```
+___
 
 #### lambda expression
 
