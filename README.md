@@ -375,6 +375,70 @@ public class BookService {
 }
 ```
 
+### default Methods
+
+```sh
+interface Parent {
+    default void sayHello() {
+        System.out.println("Hello");
+    }
+}
+
+class Child implements Parent{
+    @Override
+    public void sayHello() {
+        System.out.println("Hello from child");
+    }
+}
+public class MyClass {
+    public static void main(String[] args) {
+        Parent p = new Child();
+        p.sayHello();
+    }
+}
+```
+
+#### Interview Question
+
+```sh
+interface A {
+    default void sayHello() {
+        System.out.println("A says Hello");
+    }
+}
+interface B {
+    default void sayHello(){
+        System.out.println("B says Hello");
+    }
+}
+public class MyClass implements A, B{
+    public static void main(String[] args) {
+        MyClass myClass = new MyClass();
+        myClass.sayHello();
+    }
+}
+
+NOTE: Hmlog A aur B ko ek sath implement nhi kar skte hai jab tak dono mai same function with same signature hai, ye compile time error dega. 
+Agar hame dono ko implement krna hai toh:
+1. Ya to hm dono methods ka signature change krde
+2. Ya phir, hame main class mai methods ko override krna hoga
+
+public class MyClass implements A, B{
+    public static void main(String[] args) {
+        MyClass myClass = new MyClass();
+        myClass.sayHello();
+    }
+
+    @Override
+    public void sayHello() {
+        A.super.sayHello();
+        // B.super.sayHello();
+        // Ya phir hmlog yha pe apna kuch define kar skte hai
+        // System.out.println("Hello");
+    }
+}
+```
+
 ### Java 8 - Consumer, Predicate, Supplier examples
 
 ```Consumer Functional Interface```
