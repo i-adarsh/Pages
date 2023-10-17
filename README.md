@@ -1,67 +1,64 @@
-Use of Java 8
+# Use of Java 8
 1. Concise and Minimal Code
 2. Benefits of functional programming but still Java is OOP language not Functional Programing language
 3. To enable parallel programming, more compatible code for multi core processors
 
-Features of Java 8
+# Features of Java 8
 
-1. Lambda Expressions:
+###### 1. Lambda Expressions:
 Anonymous functions w/o any name and no need to define
-(x,y) -> x+y;
+```(x,y) -> x+y;```
 
-2. Stream API
+###### 2. Stream API
 Stream API for bulk data operations on collections. like list and arrat
 
-3. Date and Time API
+###### 3. Date and Time API
 Under the package java.time Java 8 offers a new date-time API
 
-4. Base64 Encode Decode
+###### 4. Base64 Encode Decode
 For Base64 encoding, Java8 has built-in encode and decode functions. -> java.util.Base64.
 
-5. Method and Constructor reference
+###### 5. Method and Constructor reference
 :: operator
 
-6. default and static methods came inside interface
+###### 6. default and static methods came inside interface
 
-7. Functional Interface @FunctionalInterface
-SAM -> Single Abstract Method 
+###### 7. Functional Interface @FunctionalInterface
+```SAM -> Single Abstract Method```
 
-8. Optional Class, Java I/O operations and Collections API Improvements
+###### 8. Optional Class, Java I/O operations and Collections API Improvements
 
-# =================================================
 
-Q. What is lambda expression?
+# Q. What is lambda expression?
 
-Lambda expression is an anonymous function, i.e. 
-not having any name
-not having any return type 
-and not having modifiers (public, private, default)
+###### Lambda expression is an anonymous function, i.e. 
+- not having any name
+- not having any return type 
+- and not having modifiers (public, private, default)
 
-Steps to make any function lambda expression
+###### Steps to make any function lambda expression
 1. remove modifier
 2. remove return type
 3. remove method name
 4. place arrow
 
-ex1:
+```sh
+Example1:
 private int getDtringLength(String str) {
     return str.length();
 }
-
 (String str) -> {return str.length();}
-
 (str) -> str.length();
 
-ex2:
+Example2:
 private void add(int a, int b) {
     System.out.println(a+b);
 }
 (int a, int b) -> {System.out.println(a+b);}
 (a,b) -> System.out.println(a+b);
+```
 
-# =================================================
-
-Benefits of Lambda Expression:
+# Benefits of Lambda Expression:
 
 1. To enable functional programming in Java
 2. To make code more readable, maintainable and Concise
@@ -69,39 +66,45 @@ Benefits of Lambda Expression:
 4. JAR file size reduction
 5. Elimination of shadow variables
 
-# =================================================
-
-# Functional Interface:
+### Functional Interface:
 public abstract methods are only allowed in interface. but after jaav 8 default and static somes inside interface
 
-@FunctionalInterface
-The interface who contains only one abstract method but can have multiple default and static method is called functional interface;
+##### @FunctionalInterface
+The interface which contains only one abstract method but can have multiple default and static method is called functional interface;
 
-ex: Runnable    => run()
+```
+ex: 
+    Runnable    => run()
     Callable    => call()
     Comparable  => compareTo()
     Comparator  => compare()
+```
 
-What is the advantage of this annotation?
+##### What is the advantage of this annotation?
+
 It restrict the interface to be a Functional Interface.
 So if people have already used some lambda expression and some new team member added another abstract method in the Interface
 all lambda expression will have errors.
 
-# Inheritance in Functional Interface:
+##### Inheritance in Functional Interface:
 
+```sh
 public interface Parent {
     public void sayHello();
 }
-
+```
 If its empty, then also its an FI.
 If we only define the Parent abstract method then also it is FI.
 
+```sh
 public interface Child extends Parent {
     public void sayHello();
     default void sayBye() {}
     static void sayTest() {}
 }
+```
 
+```sh
 @FunctionalInterface
 public interface MyFunctionalInterface {
     void m1();
@@ -115,10 +118,11 @@ public interface MyFunctionalInterface {
         System.out.println("Default Method - 4");
     }
 }
-
+```
 
 Traditional Approach, first we have to override the abstract method and then only we can call that method:
 
+```sh
 interface Calculator {
     void switchOn();
 }
@@ -132,11 +136,13 @@ public class CalculatorImpl implements Calculator {
         calculator.switchOn();
     }
 }
+```
 
-Syntax of Lambda Functions: () -> {}
+```Syntax of Lambda Functions: () -> {}```
 
-Now how we're using it, even if it's a single line of statement we don't have to give the curly braces as well:
+###### Now how we're using it, even if it's a single line of statement we don't have to give the curly braces as well:
 
+```sh
 @FunctionalInterface
 interface Calculator {
     void switchOn();
@@ -149,9 +155,11 @@ public class CalculatorImpl {
         calculator.switchOn();
     }
 }
+```
 
-Without braces:
+###### Without braces:
 
+```sh
 @FunctionalInterface
 interface Calculator {
     void switchOn();
@@ -162,9 +170,11 @@ public class CalculatorImpl {
         calculator.switchOn();
     }
 }
+```
 
-Single Parameter/Arguments
+###### Single Parameter/Arguments:
 
+```sh
 @FunctionalInterface
 interface Calculator {
     void add(int num1);
@@ -175,9 +185,11 @@ public class CalculatorImpl {
         calculator.add(24);
     }
 }
+```
 
-Multiple Parameter/Arguments
+###### Multiple Parameter/Arguments
 
+```sh
 @FunctionalInterface
 interface Calculator {
     void subtract(int num1, int num2);
@@ -188,9 +200,11 @@ public class CalculatorImpl {
         calculator.subtract(46, 38);
     }
 }
+```
 
-With some custom logic
+###### With some custom logic
 
+```sh
 @FunctionalInterface
 interface Calculator {
     int subtract(int num1, int num2);
@@ -207,11 +221,13 @@ public class CalculatorImpl {
         System.out.println("Subtract: " + calculator.subtract(46, 38));
     }
 }
+```
 
-Realworld examples:
+##### Realworld examples:
 
-Book.java
+```Book.java```
 
+```sh
 package lambda.bookExample;
 
 public class Book {
@@ -260,11 +276,11 @@ public class Book {
 
     private int pages;
 }
+```
 
-# ===================
+```BookDAO.java```
 
-BookDAO.java
-
+```sh
 package lambda.bookExample;
 
 import java.util.ArrayList;
@@ -281,9 +297,9 @@ public class BookDAO {
         return books;
     }
 }
+```
 
-# ===================
-
+```sh
 package lambda.bookExample;
 
 import java.util.Comparator;
@@ -307,10 +323,9 @@ class MyComparator implements Comparator<Book>{
         return o2.getName().compareTo(o1.getName());
     }
 }
+```
 
-
-# ===================
-
+```sh
 import java.util.Comparator;
 import java.util.List;
 
@@ -330,9 +345,9 @@ public class BookService {
         System.out.println(new BookService().getBooksInSortedOrder());
     }
 }
+```
 
-# ===================
-
+```sh
 public class BookService {
     public List<Book> getBooksInSortedOrder(){
         List<Book> books = new BookDAO().getBooks();
@@ -344,9 +359,9 @@ public class BookService {
         System.out.println(new BookService().getBooksInSortedOrder());
     }
 }
+```
 
-# ===================
-
+```sh
 public class BookService {
     public List<Book> getBooksInSortedOrder(){
         List<Book> books = new BookDAO().getBooks();
@@ -358,32 +373,32 @@ public class BookService {
         System.out.println(new BookService().getBooksInSortedOrder());
     }
 }
+```
 
-# ===================
+### Java 8 - Consumer, Predicate, Supplier examples
 
-Java 8 - Consumer, Predicate, Supplier examples
-
-Consumer Functional Interface
+```Consumer Functional Interface```
 
 Consumer<T> is an in-built functional interface introduced in Java 8.
 Consumer can be used in all contexts where an object needs to be consumed i.e. taken as inout, and some operations is to be performed on the object without returning any result
 
-void accept(T t);
-
-Predicate Functional Interface
+```void accept(T t);```
+___
+```Predicate Functional Interface```
 
 This Functional Interface used for conditional check where you think, we can use these true/false returning functions in day to day programming we should choose Predicate
 
-boolean test(T t);
-
-Supplier Functional Interface
+```boolean test(T t);```
+___
+```Supplier Functional Interface```
 
 Supplier can be used in all contexts where there is no input but an output is expected.
 
-T get();
+```T get();```
+___
+```Consumer Functional Interface```
 
-Consumer Functional Interface
-
+```sh
 public class ConsumerDemo implements Consumer<Integer> {
     @Override
     public void accept(Integer integer) {
@@ -394,8 +409,9 @@ public class ConsumerDemo implements Consumer<Integer> {
         
     }
 }
+```
 
-
+```sh
 public class ConsumerDemo{
     public static void main(String[] args) {
        Consumer<Integer> consumer = (t) -> {
@@ -404,7 +420,6 @@ public class ConsumerDemo{
        consumer.accept(10);
     }
 }
-
 
 public class ConsumerDemo{
     public static void main(String[] args) {
@@ -417,10 +432,12 @@ public class ConsumerDemo{
         list.forEach(t -> System.out.println("Print: " + t));
     }
 }
+```
+___
 
+```Predicate```
 
-Predicate
-
+```sh
 public class PredicateDemo implements Predicate<Integer> {
     @Override
     public boolean test(Integer integer) {
@@ -432,9 +449,11 @@ public class PredicateDemo implements Predicate<Integer> {
         System.out.println(predicate.test(4));
     }
 }
+```
 
-lambda expression
+#### lambda expression
 
+```sh
 public class PredicateDemo{
 
     public static void main(String[] args) {
@@ -444,7 +463,9 @@ public class PredicateDemo{
         System.out.println(predicate.test(57));
     }
 }
+```
 
+```sh
 public class PredicateDemo{
 
     public static void main(String[] args) {
@@ -452,4 +473,4 @@ public class PredicateDemo{
         System.out.println(predicate.test(64));
     }
 }
-
+```
