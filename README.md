@@ -674,8 +674,8 @@ A stream is a sequence of objects that supports various methods which can be pip
 
 #### Methods:
 
-- Filter - for conditional check
-- for Each - for iteration
+- filter - for conditional check
+- forEach - for iteration
 
 ```forEach```
 
@@ -717,4 +717,55 @@ public class ForEachDemo {
 }
 ```
 
+```Real world example```
 
+```sh
+package stream;
+
+public class Employee {
+    private int id;
+    private String name;
+    private String department;
+    private long salary ;
+
+    public Employee(int id, String name, String department, long salary) {
+        this.id = id;
+        this.name = name;
+        this.department = department;
+        this.salary = salary;
+    }
+}
+```
+
+
+```sh
+public class DataBase {
+    // DAO Layer
+    public static List<Employee> getEmployees() {
+        List<Employee> list = new ArrayList<>();
+        list.add(new Employee(176, "Roshan", "IT", 760000));
+        list.add(new Employee(388, "Bikash", "Civil", 860000));
+        list.add(new Employee(325, "Bimal", "Defence", 960000));
+        list.add(new Employee(547, "Sourav", "Core", 360000));
+        list.add(new Employee(326, "Prakash", "Social", 560000));
+        return list;
+    }
+}
+```
+
+```sh
+public class TaxService {
+    public static List<Employee> evaluateTaxUser(String input){
+        return (input.equalsIgnoreCase("Taxpayer"))
+                ? DataBase.getEmployees().stream()
+                .filter(employee -> employee.getSalary() > 500000).collect(Collectors.toList())
+                : DataBase.getEmployees().stream()
+                .filter(employee -> employee.getSalary() <= 500000).collect(Collectors.toList());
+    }
+
+    public static void main(String[] args) {
+        System.out.println(evaluateTaxUser(""));
+        System.out.println(evaluateTaxUser("Taxpayer"));
+    }
+}
+```
