@@ -628,3 +628,32 @@ public class PredicateDemo{
     }
 }
 ```
+
+```sh
+public class PredicateDemo{
+
+    public static void main(String[] args) {
+        Predicate<Integer> predicate = (t) -> t % 2 == 0;
+        System.out.println(predicate.test(64));
+        List<Integer> list = Arrays.asList(1,4,23,6,3,7,84,3);
+        list.stream().filter(t -> t % 2 == 0).forEach(t -> System.out.println("Even Numbers: " + t));
+        list.stream().filter(t -> t % 2 != 0).forEach(t -> System.out.println("Odd Numbers: " + t));
+    }
+}
+```
+
+___
+
+```Supplier```
+
+```sh
+import java.util.Arrays;
+import java.util.List;
+
+public class SupplierDemo {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList("a", "b");
+        System.out.println(list.stream().findAny().orElseGet(() -> "Bounce Back"));
+    }
+}
+```
