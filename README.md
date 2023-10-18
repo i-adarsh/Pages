@@ -225,6 +225,47 @@ public class CalculatorImpl {
 
 ##### Realworld examples:
 
+```Runnable```
+
+```sh
+public class Main {
+    static class MyClass implements Runnable { // This is a thread
+        @Override
+        public void run() { // This is thread job
+            for (int i = 1; i <= 10; i++) {
+                System.out.println("Hello: " + i);
+            }
+        }
+    }
+    public static void main(String[] args) {
+        MyClass myClass = new MyClass();
+        Thread thread = new Thread(myClass);
+        thread.start(); // starts new thread
+    }
+}
+```
+
+##### Using Lambda expression
+
+```sh
+public class Main {
+    public static void main(String[] args) {
+        Thread thread = new Thread(() -> {
+            for (int i = 1; i <= 10; i++) {
+                System.out.println("Hello: " + i);
+            }
+        });
+        thread.start(); // starts new thread
+    }
+}
+```
+
+```Comparator```
+
+```sh
+
+```
+
 ```Book.java```
 
 ```sh
@@ -438,6 +479,54 @@ public class MyClass implements A, B{
     }
 }
 ```
+
+___
+
+#### Static Method in interface
+
+- Static Methods in Interface are those methods, which are defined in the interface with the keyword static.
+
+- static methods contain the complete definition of the function
+
+- cannot be overridden or changed in the implementation class
+
+- interface mai agar static method hai toh hmlog usko sirf uske name se hi call kar skte hai
+
+- but agar hamare pas koi default method hai toh hmlog class ka obj bna ke usko call kar skte hai
+
+```sh
+interface A {
+    static void sayHello() {
+        System.out.println("A says Hello");
+    }
+    default void sayBye() {
+        System.out.println("Bye !");
+    }
+}
+
+public class MyClass implements A{
+    public static void main(String[] args) {
+        MyClass myClass = new MyClass();
+        myClass.sayBye();
+        A.sayHello();
+    }
+}
+```
+
+Agar mere pas koi static method hai mere interface mai toh wo mwthods mere implemented class ko show hi nhi hoga, jiske wajah se hum static methods ko override hi nhi kar skte
+
+From Java8 we can call main functions from an interfacce, because from java8 se static methods interface ke andar aana suru ho gye hai
+
+```sh
+public interface MyClass {
+    public static void main(String[] args) {
+        System.out.println("Hello from interface");
+    }
+}
+```
+
+___
+
 
 ### Java 8 - Consumer, Predicate, Supplier examples
 
