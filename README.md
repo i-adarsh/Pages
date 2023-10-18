@@ -657,6 +657,7 @@ public class SupplierDemo {
     }
 }
 ```
+___
 
 ### Streams in Java
 
