@@ -161,7 +161,7 @@ Data Flattering: Convert stream of stream into single stream
 | Data Transformation : From Stream to Stream | Data Transformation : From Stream<Stream>to Stream |
 | Use this method when the mapper function is producing a single value for each input value. | Use this method when the mapper function is producing multiple values for each input value. |
 
-
+___
 
 ```sh
 package stream.sort;
