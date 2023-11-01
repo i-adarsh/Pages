@@ -163,5 +163,41 @@ Data Flattering: Convert stream of stream into single stream
 
 
 
+```sh
+package stream.sort;
+
+import java.util.List;
+
+public class MapVsFlatMap {
+    public static void main(String[] args) {
+        List<Customer> customers = EkartDatabase.getAll();
+
+        // List<Customer> convert List<String> -> Data Transformation
+        // mapping : customer -> customer.getEmail()
+        // customer -> customer.getEmail() : one to one mapping
+        // conventional
+        // List<String> emails = customers.stream().map(customer -> customer.getEmail()).collect(Collectors.toList());
+        // using lambda
+        List<String> emails = customers.stream().map(Customer::getEmail).toList();
+        emails.forEach(System.out::println);
+
+        // conventional
+        // List<List<String>> phoneNumbers = customers.stream().map(customer -> customer.getPhoneNumbers()).collect(Collectors.toList());
+        // lambda
+        List<List<String>> phoneNumbers = customers.stream().map(Customer::getPhoneNumbers).toList();
+        System.out.println(phoneNumbers);
+
+        // flatmap()
+        // List<Customer> convert List<String> -> Data Transformation
+        // mapping : customer -> phone numbers
+        // customer -> customer.getPhoneNumbers() : one to many mapping
+        List<String> phone = customers.stream().flatMap(customer -> customer.getPhoneNumbers().stream()).toList();
+        System.out.println(phone);
+    }
+}
+```
+
+
+
 
  
