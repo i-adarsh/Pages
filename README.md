@@ -660,4 +660,50 @@ public class SupplierDemo {
 ___
 
 
+#### lambda expression
 
+```sh
+package Java8;
+
+import stream.sort.Customer;
+import stream.sort.EkartDatabase;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+public class OptionalDemo {
+    public static Customer getCustomerByEmailId(String email) throws Exception {
+        List<Customer> customers = EkartDatabase.getAll();
+        return customers.stream()
+                .filter(customer -> customer.getEmail().equalsIgnoreCase(email))
+                .findAny().orElseThrow(() -> new Exception("no customer with this email"));
+    }
+    public static void main(String[] args) throws Exception {
+        Customer customer = new Customer(101, "abc", "abc@email.com", Arrays.asList("1323536", "4367348"));
+        // empty
+        // of
+        // ofNullable
+
+        Optional<Object> emptyOptional = Optional.empty();
+        System.out.println(emptyOptional);
+
+        Optional<String> emailOptional = Optional.of(customer.getEmail());
+        System.out.println(emailOptional);
+
+        Optional<String> emailOption = Optional.ofNullable(customer.getEmail());
+        /*
+        old method
+        if(emailOption.isPresent()){
+            System.out.println(emailOption.get());
+        }
+        */
+        emailOption.ifPresent(System.out::println);
+        System.out.println(emailOption.orElse("Email not present: default@email.com"));
+        System.out.println(emailOption.orElseThrow(() -> new IllegalArgumentException("Email not present")));
+        System.out.println(emailOption.map(String::toUpperCase).orElseGet(()->"default email ..."));
+        getCustomerByEmailId("hello");
+    }
+}
+
+```
