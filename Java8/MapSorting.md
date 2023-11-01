@@ -153,6 +153,7 @@ Data Flattering: Convert stream of stream into single stream
 [[1, 2], [3, 4], [5, 6], [7, 8]] => [1, 2, 3, 4, 5, 6, 7, 8]
 
 | map() | flatMap()|
+|-------|----------|
 | It processes stream of values. | It processes stream of stream of values. |
 | It does only mapping. | It performs|mapping as well as flattening. |
 | It's mapper function produces single value for each input value. | It's mapper function produces mutiple values for each input value. |
