@@ -7,6 +7,8 @@ outcomes
 
 3. The order of execution, however, is not under our control.
 
+___
+
 ```sh
 package Java8.parallelStream;
 
