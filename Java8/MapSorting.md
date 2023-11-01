@@ -106,3 +106,61 @@ public class SortMap {
 }
 
 ```
+
+### Map() & flatMap()
+
+
+1. Java 8 stream API provides map() and flatMap() method. Both these methods are intermediate methods and returns another stream as part of the output.
+2. map() method used for transformation
+3. flatMap() used for transformation & flattering
+4. flatMap() → map() + flattering
+
+___
+
+map() method > Data Transformation
+
+• map() takes Stream<T> as input and return Stream<R>
+Stream<R> map(Stream<T> input){}
+
+```‹R› Stream<R› map(Function‹? super T, ? extends R› mapper);```
+
+It's mapper function produces single value for each input value,
+hence it is also called One-To-One mapping.
+
+___
+
+flatMap() method > map() + Flattering
+
+• flatMap() takes Stream<Stream<T>> as input and return Stream<R>
+Stream<R> map(Stream<Stream<T input)}
+
+```<R> Stream<R> flatMap(Function‹? super T, ? extends Stream<? extends R>> mapper);```
+
+It's mapper function produces multiple value for each input value,
+hence it is also called One-To-Many mapping.
+
+___
+
+#### Data Transformation and Flattering
+
+Data Transformation: Transform data from lowercase to uppercase
+
+stream.of("a", "b", "c", "d"); => [A, B, C, D]
+
+
+Data Flattering: Convert stream of stream into single stream
+
+[[1, 2], [3, 4], [5, 6], [7, 8]] => [1, 2, 3, 4, 5, 6, 7, 8]
+
+| map() | flatMap()|
+| It processes stream of values. | It processes stream of stream of values. |
+| It does only mapping. | It performs|mapping as well as flattening. |
+| It's mapper function produces single value for each input value. | It's mapper function produces mutiple values for each input value. |
+| It is a One-To-One mapping. | It is a One-To-Many mapping.|
+| Data Transformation : From Stream to Stream | Data Transformation : From Stream<Stream>to Stream |
+| Use this method when the mapper function is producing a single value for each input value. | Use this method when the mapper function is producing multiple values for each input value. |
+
+
+
+
+ 
