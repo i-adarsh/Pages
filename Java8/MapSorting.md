@@ -145,12 +145,12 @@ ___
 
 Data Transformation: Transform data from lowercase to uppercase
 
-stream.of("a", "b", "c", "d"); => [A, B, C, D]
+stream.of("a", "b", "c", "d");      -->     [A, B, C, D]
 
 
 Data Flattering: Convert stream of stream into single stream
 
-[[1, 2], [3, 4], [5, 6], [7, 8]] => [1, 2, 3, 4, 5, 6, 7, 8]
+[[1, 2], [3, 4], [5, 6], [7, 8]]    -->     [1, 2, 3, 4, 5, 6, 7, 8]
 
 | map() | flatMap()|
 |-------|----------|
