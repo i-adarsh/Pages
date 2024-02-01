@@ -61,5 +61,5 @@ public class ParallelStreamExample {
         System.out.println("Average Salary: " + avgWithParallelStream);
     }
 }
-
+// Java Techie
 ```

@@ -1,0 +1,75 @@
+function getShortestUniqueSubstring(arr, str):
+    headIndex = 0
+    result = ""
+    uniqueCounter = 0
+    countMap = new Map()
+
+    # initialize countMap
+    for i from 0 to arr.length - 1:
+        countMap.setValueOf(arr[i], 0)
+
+    # scan str
+    for tailIndex from 0 to str.length - 1:
+        # handle the new tail
+        tailChar = str.charAt(tailIndex)
+
+        # skip all the characters not in arr
+        if (countMap.keyExists(tailChar) == false):
+            continue
+
+        tailCount = countMap.getValueOf(tailChar)
+        if (tailCount == 0):
+            uniqueCounter = uniqueCounter + 1
+
+        countMap.setValueOf(tailChar, tailCount + 1)
+
+        # push head forward
+        while (uniqueCounter == arr.length):
+            tempLength = tailIndex - headIndex + 1
+            if (tempLength == arr.length):
+                # return a substring of str from
+                # headIndex to tailIndex (inclusive)
+                return str.substring(headIndex, tailIndex)
+
+            if (result == "" OR tempLength < result.length):
+                # return a substring of str from
+                # headIndex to tailIndex (inclusive)
+                result = str.substring(headIndex, tailIndex)
+
+            headChar = str.charAt(headIndex)
+
+            if (countMap.keyExists(headChar)):
+                headCount = countMap.getValueOf(headChar) - 1
+                if (headCount == 0):
+                    uniqueCounter = uniqueCounter - 1
+                countMap.setValueFor(headChar, headCount)
+
+            headIndex = headIndex + 1
+
+    return result
+
+
+Time Complexity: we’re doing a linear iteration of both str and arr of lengths N and M respectively, so the runtime complexity is linear in the size of the input, i.e. O(N+M).
+
+Space Complexity: we’re using a Map/Hash Table countMap with M key/values pairs plus few constant size counters, which together give us an O(M) space complexity (linear in the size of arr).
+
+
+
+I am writing to express my interest in the Junior Java Developer.
+
+In my previous role, I was responsible for designing and developing new features, as well as optimizing the performance of the existing codebase. I also worked closely with the DevOps team to deploy and maintain the platform on AWS.
+
+I have a strong understanding of data structures, algorithms, software design, and systems analysis.
+
+Here are some specific examples of my accomplishments in my previous role:
+
+•	Developed Role-Based Access Control (RBAC) for 4+ user profiles, allowing user access only to authorized services. 
+
+•	Optimized the performance of the platform, resulting in a 30% reduction in page load times.
+
+•	Worked with the DevOps team to deploy and maintain the platform on AWS with zero downtime.
+
+•	Helped the team in transforming a traditional web application into a multi-tenant SaaS application, by designing the high-level architecture to serve multiple companies.
+
+
+Grant Hart
